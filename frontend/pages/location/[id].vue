@@ -86,6 +86,9 @@
   const locations = computed(() => locationStore.allLocations);
 
   const parent = ref<LocationSummary | any>({});
+  const currentUrl = computed(() => {
+    return window.location.href;
+  });
 
   const items = computedAsync(async () => {
     if (!location.value) {
@@ -169,6 +172,7 @@
             </div>
             <div class="ml-auto mt-2 flex flex-wrap items-center justify-between gap-3">
               <div class="btn-group">
+                <CopyText :text="currentUrl" :icon-size="16" class="btn btn-circle btn-ghost btn-xs" />
                 <PageQRCode class="dropdown-left" />
                 <BaseButton size="sm" @click="openUpdate">
                   <MdiPencil class="mr-1" name="mdi-pencil" />
